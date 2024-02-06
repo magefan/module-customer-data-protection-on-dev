@@ -1,0 +1,65 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * Copyright © Magefan (support@magefan.com). All rights reserved.
+ * Please visit Magefan.com for license details (https://magefan.com/end-user-license-agreement).
+ *
+ * Glory to Ukraine! Glory to the heroes!
+ */
+-->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+	<argument name="data" xsi:type="array">
+		<item name="js_config" xsi:type="array">
+			<item name="provider" xsi:type="string">magefan_customerdataprotectionondev_delete_form.delete_form_data_source</item>
+		</item>
+		<item name="label" xsi:type="string" translate="true">General Information</item>
+		<item name="template" xsi:type="string">templates/form/collapsible</item>
+	</argument>
+	<settings>
+		<buttons>
+			<button name="back" class="Magefan\CustomerDataProtectionOnDev\Block\Adminhtml\Delete\Edit\BackButton"/>
+			<button name="save" class="Magefan\CustomerDataProtectionOnDev\Block\Adminhtml\Delete\Edit\SaveButton"/>
+		</buttons>
+		<namespace>magefan_customerdataprotectionondev_delete_form</namespace>
+		<dataScope>data</dataScope>
+		<deps>
+			<dep>magefan_customerdataprotectionondev_delete_form.delete_form_data_source</dep>
+		</deps>
+	</settings>
+	<dataSource name="delete_form_data_source">
+		<argument name="data" xsi:type="array">
+			<item name="js_config" xsi:type="array">
+				<item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+			</item>
+		</argument>
+		<settings>
+			<submitUrl path="*/*/save"/>
+		</settings>
+		<dataProvider name="delete_form_data_source" class="Magefan\CustomerDataProtectionOnDev\Model\Delete\DataProvider">
+			<settings>
+				<requestFieldName>delete_id</requestFieldName>
+				<primaryFieldName>delete_id</primaryFieldName>
+			</settings>
+		</dataProvider>
+	</dataSource>
+	<fieldset name="general">
+		<settings>
+			<label>Enter Dev Domain Name</label>
+		</settings>
+		<field name="domain_name" formElement="textarea" sortOrder="10">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">Delete</item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>text</dataType>
+				<label translate="true">Domain Name</label>
+				<dataScope>domain_name</dataScope>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">true</rule>
+				</validation>
+			</settings>
+		</field>
+	</fieldset>
+</form>
